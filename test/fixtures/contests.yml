@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cont_id: MyString
+  name: MyString
+  start_date: 2017-12-09 21:32:54
+
+two:
+  cont_id: MyString
+  name: MyString
+  start_date: 2017-12-09 21:32:54

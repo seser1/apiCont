@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+#require File.dirname(__FILE__) + "/../app/models/contest.rb"
+Contest.create(cont_id: 'test01', name: 'testContest', start_date: '')

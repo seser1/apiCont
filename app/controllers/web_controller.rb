@@ -8,6 +8,7 @@ class WebController < ApplicationController
   end
 
   def cont
+    @contests = Contest.all
     render 'web/cont'
   end
 
