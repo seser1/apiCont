@@ -11,9 +11,7 @@ class WebController < ApplicationController
   end
 
   def cont
-    para=params[:id]
-    @contest = Contest.where(cont_id: para).first
-#    @contest = Contest.find(:first, :conditions => {:cont_id => para})
+    @contest = Contest.where(cont_id: params[:id]).first
     render 'web/cont'
   end
 

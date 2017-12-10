@@ -7,13 +7,7 @@
   <body>
   list<br>
     <% @contests.each do |contest| %>
-    <a href="/cont/<%= contest.cont_id %>">
-    <tr>
-      <td><%= contest.cont_id %></td>
-      <td><%= contest.name %></td>
-      <td><%= contest.start_date %></td>
-    </tr>
-    </a>
+      <a href="/cont/<%= contest.cont_id %>"><%= contest.cont_id %></a><br>
     <% end %>
   </body>
 </html>
