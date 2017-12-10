@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ApiCont</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    layout: web_main<br>
+    menu: <a href="/top">top</a>:<a href="/list">list</a>:<a href="/users">user</a><br>
+    <%= yield %>
+  </body>
+</html>

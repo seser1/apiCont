@@ -5,11 +5,10 @@
   </head>
 
   <body>
-    <% @contests.each do |contest| %>
-      <tr>
-        <td><%= contest.cont_id %></td>
-        <td><%= contest.name %></td>
-        <td><%= contest.start_date %></td>
-      </tr>
-    <% end %>  </body>
+    <tr>
+      <td><%= @contest.cont_id %></td>
+      <td><%= @contest.name %></td>
+      <td><%= @contest.start_date %></td>
+    </tr>
+  </body>
 </html>
