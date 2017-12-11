@@ -3,6 +3,7 @@ class CreateContests < ActiveRecord::Migration[5.1]
     create_table :contests do |t|
       t.string :cont_id
       t.string :name
+      t.string :text
       t.time :start_date
 
       t.timestamps

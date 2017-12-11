@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20171209123254) do
   create_table "contests", force: :cascade do |t|
     t.string "cont_id"
     t.string "name"
+    t.string "text"
     t.time "start_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

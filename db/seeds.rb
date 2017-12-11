@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #require File.dirname(__FILE__) + "/../app/models/contest.rb"
-Contest.create(cont_id: 'test01', name: 'testContest', start_date: '')
+Contest.create(cont_id: 'test01', name: 'testContest', text: 'Test contest 01',start_date: '')

@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>cont</title>
-  </head>
-
-  <body>
-    <tr>
-      <td><%= @contest.cont_id %></td>
-      <td><%= @contest.name %></td>
-      <td><%= @contest.start_date %></td>
-    </tr>
-  </body>
-</html>
+<div class="page_title">cont</div>
+<div class="content">
+name: <%= @contest.name %>
+<%= @contest.start_date %><br>
+<%= @contest.text %>
+</div>

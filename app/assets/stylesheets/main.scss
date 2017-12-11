@@ -3,14 +3,43 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .container{
-  width: auto;
-  border: solid #000 1px;
+  position:relative;
+  
+  min-height: 600px;
+  max-width: 980px;
 
+  margin: auto;
+  
+  border: solid #000 1px;
 }
 
 .menu{
-  width: auto;
+  position:absolute;
+  top:30px;left:0;right:0;
+  height:30px;
+
+  padding: 2px;
 
   background: #000;
   color: #fff;
+}
+
+.page_title{
+  width: auto;
+  
+  position:absolute;
+  top:0;left:0;right:0;
+  height:30px;
+
+  padding: 2px;
+  
+  color: #222;
+  font-size: large;
+}
+
+.content{
+  position:absolute;
+  top:60px;left:0;right:0;
+  
+  padding: 3px;
 }

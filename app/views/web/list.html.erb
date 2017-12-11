@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>list</title>
-  </head>
-
-  <body>
-  list<br>
-    <% @contests.each do |contest| %>
-      <a href="/cont/<%= contest.cont_id %>"><%= contest.cont_id %></a><br>
-    <% end %>
-  </body>
-</html>
+<div class="page_title">list</div>
+<div class="content">
+<% @contests.each do |contest| %>
+  <a href="/cont/<%= contest.cont_id %>"><%= contest.cont_id %></a><br>
+<% end %>
+</div>
