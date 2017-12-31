@@ -1,0 +1,2 @@
+class ContInfo < ApplicationRecord
+end
