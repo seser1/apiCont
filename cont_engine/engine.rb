@@ -1,4 +1,4 @@
-require './contest.rb'
+require './cont_act.rb'
 
 #Executed from job controller
 contest = Contest.new

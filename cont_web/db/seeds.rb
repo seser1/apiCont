@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Contest.create(cont_id: 'test01', name: 'testContest', text: 'Test contest 01',start_date: '')
-ContInfo.create(cont_name: 'testContest', int_param: 1)
+ContDatum.create(cont_name: 'testContest', int_param: 1)

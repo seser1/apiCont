@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171231141640) do
+ActiveRecord::Schema.define(version: 20171231171846) do
 
-  create_table "cont_infos", force: :cascade do |t|
+  create_table "cont_data", force: :cascade do |t|
     t.string "cont_name"
     t.integer "int_param"
     t.datetime "created_at", null: false
