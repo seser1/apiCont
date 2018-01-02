@@ -13,7 +13,9 @@
 ActiveRecord::Schema.define(version: 20171231171846) do
 
   create_table "cont_data", force: :cascade do |t|
-    t.string "cont_name"
+    t.string "cont_id"
+    t.string "name"
+    t.integer "term"
     t.integer "int_param"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
