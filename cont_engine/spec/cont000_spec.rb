@@ -1,10 +1,17 @@
 require_relative 'spec_helper'
 
-RSpec.describe 'Cont000' do
-  it "initializing" do
+RSpec.describe 'Cont000 test' do
     user = ['user1', 'user2']
-    cont = Cont000.new(user)
-#    cont.next()
-    expect(cont.get_view).to eq nil
-  end
+ 
+    it 'Initialized' do
+        cont = Cont000.new(user)
+        expect(cont.get_struct).to eq '{"count1":0,"count2":0}'
+    end
+    
+    it 'Execute next one time' do
+      cont = Cont000.new(user)
+      cont.next()
+      expect(cont.get_struct).to eq '{"count1":0,"count2":0}'
+    end
+
 end
