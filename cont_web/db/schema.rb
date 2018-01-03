@@ -10,22 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171231171846) do
-
-  create_table "cont_data", force: :cascade do |t|
-    t.string "cont_id"
-    t.string "name"
-    t.integer "term"
-    t.integer "int_param"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20171209123254) do
 
   create_table "contests", force: :cascade do |t|
     t.string "cont_id"
     t.string "name"
     t.string "text"
     t.time "start_date"
+    t.integer "term"
+    t.text "struct"
+    t.text "view"
+    t.integer "int_param"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

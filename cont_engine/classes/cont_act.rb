@@ -10,7 +10,7 @@ class Contest
     #If there already exists dbfile, open the file (not overwritten)
     db = SQLite3::Database.new $db_pass
       db.results_as_hash = true
-      db.execute("SELECT * FROM cont_data WHERE cont_id == '#{@cont_id}'") do |row|
+      db.execute("SELECT * FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
         @term=row['term']
       end
     db.close
@@ -47,11 +47,11 @@ class Contest
   def update_db
 
     db = SQLite3::Database.new $db_pass
-      db.execute("SELECT int_param FROM cont_data WHERE cont_id == '#{@cont_id}'") do |row|
+      db.execute("SELECT int_param FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
         $i=row[0]
       end
       p $i
-      db.execute("UPDATE cont_data SET int_param =? WHERE cont_id == '#{@cont_id}'", $i+1)
+      db.execute("UPDATE contests SET int_param =? WHERE cont_id == '#{@cont_id}'", $i+1)
     db.close
   end
 
