@@ -1,21 +1,15 @@
 require 'json'
+require_relative './cont_template'
 
-class cont000
-  def initialize()
+class Cont000 < ContestTemplate
+  def initialize(user_info)
     @data={:count1 => 0, :count2 => 0}
+    @user_info=user_info
     @view=nil
   end
 
-  def next
+  def next(input)
 
-  end
-
-  def get_struct
-    return json.generate(@data)
-  end
-
-  def get_view
-    return @view
   end
 
 end

@@ -1,4 +1,4 @@
-require './classes/cont_act.rb'
+require './lib/cont_act.rb'
 
 $cont_id='000'
 
