@@ -8,8 +8,10 @@ class CreateContests < ActiveRecord::Migration[5.1]
       
       #Contest data
       t.integer :term
-      #json structure send to user
-      t.text :struct
+      #template of input structure
+      t.text :input_template
+      #json structured data send to user
+      t.text :data
       #view displayed to user
       t.text :view
       t.integer :int_param

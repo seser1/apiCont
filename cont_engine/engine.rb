@@ -1,5 +1,6 @@
 require './lib/cont_act.rb'
 
+#cont_id and user_id are given by using arguments when execute
 $cont_id='000'
 
 #Executed from job controller
