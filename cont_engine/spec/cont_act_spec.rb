@@ -6,7 +6,6 @@ RSpec.describe 'cont_act test' do
 
     it 'Initialized' do
         contest = Contest.new(cont_id, users)
-        expect(cont.calc).to eq nil
     end
 
 end
