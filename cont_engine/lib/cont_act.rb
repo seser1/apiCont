@@ -21,7 +21,6 @@ class Contest
   end
 
   def run
-
     index=0
 
     while @run_flag
