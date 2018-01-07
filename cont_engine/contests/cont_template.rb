@@ -13,7 +13,7 @@ class ContestTemplate
 
   def next(input)
     #input is json format data
-    @input=JSON.load(input)
+    @input=JSON.parse(input, {:symbolize_names => true}) 
     logic
 
     #Return true if contest continues

@@ -5,8 +5,11 @@ class CreateContests < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :text
       t.time :start_date
+
+      #Users particiapte the contest (json format)
+      t.text :users
       
-      #Contest data
+      #Contest update term (ms)
       t.integer :term
       #template of input structure
       t.text :input_template

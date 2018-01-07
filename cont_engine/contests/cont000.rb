@@ -17,7 +17,8 @@ class Cont000 < ContestTemplate
     #Contest logic
     @data[:count1]+=1
     @input.each{|k, v|@data[:count2]+=v[:change]}
-    #Logic end  end
+    #Logic end end
+  end
 
   def continue?
     return false if @data[:count1]>=10

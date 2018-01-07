@@ -18,5 +18,4 @@ RSpec.describe 'Cont000 test' do
       expect(hs[:count1]).to eq 1
       expect(hs[:count2]).to eq 5
     end
-
 end
