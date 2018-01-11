@@ -12,19 +12,24 @@ class Contest
       db.results_as_hash = true
       db.execute("SELECT * FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
         @term=row['term']
+        @users=JSON.parse(row['users'], {:symbolize_names => true}) 
       end
     db.close
 
+    @contest=init_cont()
+
     @run_flag=true
-    @db_thread=nil
-    @calc_thread=nil
+  end
+
+  def init_cont()
+    #Create contest instance and initialize it 
   end
 
   def run
     index=0
 
     while @run_flag
-      @calc_thread=Thread.start {  
+      @calc_thread=Thread.start {
         puts "calc_thread#{index} start"
         calc
         puts "calc_thread#{index} end"

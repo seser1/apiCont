@@ -1,12 +1,12 @@
 require 'json'
 
 class ContestTemplate
-  def initialize(user_info)
+  def initialize(users)
     @data_template={}
     @input_template={}
 
     @data={}
-    @user_info=user_info
+    @users=users
     @view=nil
     @input=nil
   end

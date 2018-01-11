@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Contest.create(cont_id: '000', name: 'testContest', text: 'Test contest 01', term: 3000, int_param: 1)
+Contest.create(cont_id: '000', name: 'testContest', text: 'Test contest 01', users: '["user1","user2"]', term: 3000, int_param: 1)

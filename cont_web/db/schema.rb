@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(version: 20171209123254) do
     t.string "name"
     t.string "text"
     t.time "start_date"
+    t.text "users"
     t.integer "term"
-    t.text "struct"
+    t.text "input_template"
+    t.text "data"
     t.text "view"
     t.integer "int_param"
     t.datetime "created_at", null: false
