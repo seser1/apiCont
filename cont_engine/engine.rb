@@ -1,4 +1,4 @@
-require './lib/cont_act.rb'
+require './lib/contest.rb'
 
 #cont_id are given by using arguments when execute
 $cont_id='000'
