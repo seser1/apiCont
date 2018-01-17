@@ -1,7 +1,8 @@
 Dir[File.join(File.dirname(__FILE__), "../cont_list/*.rb")].each { |f| require f }
 
 module ContManager
-  
+  #Help Contest to get target contest's instance
+
   $cont_list={
     "000" => "Cont000"
   }

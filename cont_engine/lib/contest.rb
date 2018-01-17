@@ -1,6 +1,6 @@
 require 'sqlite3'
+require 'cont_manager'
 
-#$db_pass='../../cont_web/db/development.sqlite3'
 $db_pass=File.expand_path(File.dirname(__FILE__) + './../../cont_web/db/development.sqlite3')
 
 class Contest
@@ -17,18 +17,16 @@ class Contest
     db.close
 
     @contest=init_cont()
-
-    @run_flag=true
   end
 
   def init_cont()
-    #Create contest instance and initialize it 
+    return ContManager.get_instance("000",@users)
   end
 
   def run
     index=0
 
-    while @run_flag
+    while @contest.run_flag
       @calc_thread=Thread.start {
         puts "calc_thread#{index} start"
         calc

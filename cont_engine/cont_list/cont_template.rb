@@ -1,6 +1,8 @@
 require 'json'
 
 class ContestTemplate
+  attr_accessor :run_flag
+
   def initialize(users)
     @data_template={}
     @input_template={}
@@ -9,6 +11,8 @@ class ContestTemplate
     @users=users
     @view=nil
     @input=nil
+
+    @run_flag=true
   end
 
   def next(input)
@@ -16,10 +20,19 @@ class ContestTemplate
     @input=JSON.parse(input, {:symbolize_names => true}) 
     logic
 
-    #Return true if contest continues
-    #Return false when contest ends
-    return continue?
+    #Update @run_flag
+    continue?
   end
+  
+  def logic
+    #Write logic here
+  end
+
+  def continue?
+    #Write continuing basis
+  end
+
+  #--Methods below aren't considered to be updated at inheriting class--
 
   def get_struct
     return JSON.generate(@data)
@@ -27,14 +40,6 @@ class ContestTemplate
 
   def get_view
     return @view
-  end
-
-  def logic
-    #Write logic here
-  end
-
-  def continue?
-    #Write continuing basis
   end
 
 end
