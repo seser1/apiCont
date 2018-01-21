@@ -17,7 +17,8 @@ class Cont000 < ContestTemplate
     #Contest logic
     @data[:count1]+=1
     @input.each{|k, v|@data[:count2]+=v[:change]}
-    #Logic end end
+    @view="count1: #{@data[:count1]} count2: #{@data[:count2]}";
+    #Logic end
   end
 
   def continue?

@@ -1,14 +1,15 @@
 require 'sqlite3'
 require 'cont_manager'
 
-$db_pass=File.expand_path(File.dirname(__FILE__) + './../../cont_web/db/development.sqlite3')
+#Related path of db file
+$db_path=File.expand_path(File.dirname(__FILE__) + './../../cont_web/db/development.sqlite3')
 
 class Contest
   def initialize(cont_id)
     @cont_id=cont_id
 
     #If there already exists dbfile, open the file (not overwritten)
-    db = SQLite3::Database.new $db_pass
+    db = SQLite3::Database.new $db_path
       db.results_as_hash = true
       db.execute("SELECT * FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
         @term=row['term']
@@ -20,25 +21,34 @@ class Contest
   end
 
   def init_cont()
-    return ContManager.get_instance("000",@users)
+    return ContManager.get_instance(@cont_id,@users)
   end
 
   def run
     index=0
 
+    #At the first turn, no thread executed. So sleep once
+    sleep(@term/1000)
+
+    #Main loop of contest
     while @contest.run_flag
+      #At the beggining of turn, backup current data
+      #Because update_db must use latest turn's data
+      @data_out = @contest.get_struct
+      @view_out = @contest.get_view
+
+      #db_thread starts immediately after backup
+      @db_thread=Thread.start {
+        puts "db_thread#{index} start"
+        update_db
+        puts "db_thread#{index} end"
+      }
+
+      #calc_thread starts immediately after backup
       @calc_thread=Thread.start {
         puts "calc_thread#{index} start"
         calc
         puts "calc_thread#{index} end"
-      }
-
-      @db_thread=Thread.start {
-        #db_thread starts 3/4 delayed from calc_thread
-        sleep((@term/1000)*3/4)
-        puts "db_thread#{index} start"
-        update_db
-        puts "db_thread#{index} end"
       }
 
       sleep(@term/1000)
@@ -47,17 +57,13 @@ class Contest
   end
 
   def update_db
-
-    db = SQLite3::Database.new $db_pass
-      db.execute("SELECT int_param FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
-        $i=row[0]
-      end
-      p $i
-      db.execute("UPDATE contests SET int_param =? WHERE cont_id == '#{@cont_id}'", $i+1)
+    db = SQLite3::Database.new $db_path
+      db.execute("UPDATE contests SET data =? view =? WHERE cont_id == '#{@cont_id}'", @data_out, @view_out)
     db.close
   end
 
   def calc
+    @contest.logic
   end
 
 end
