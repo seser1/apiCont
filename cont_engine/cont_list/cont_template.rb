@@ -14,25 +14,27 @@ class ContestTemplate
 
     @run_flag=true
   end
-
-  def next(input)
-    #input is json format data
-    @input=JSON.parse(input, {:symbolize_names => true}) 
-    logic
-
-    #Update @run_flag
-    continue?
-  end
   
   def logic
     #Write logic here
   end
 
-  def continue?
-    #Write continuing basis
+  def update_stat
+    #Write code updates @run_flag
   end
 
   #--Methods below aren't considered to be updated at inheriting class--
+
+  def next(input)
+    #input is json format data
+    @input=JSON.parse(input, {:symbolize_names => true}) 
+
+    #Contest's main logic
+    logic
+
+    #Update @run_flag
+    update_stat
+  end
 
   def get_struct
     return JSON.generate(@data)

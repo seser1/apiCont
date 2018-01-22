@@ -59,12 +59,12 @@ class Contest
 
   def update_db
     db = SQLite3::Database.new $db_path
-      db.execute("UPDATE contests SET data =? view =? WHERE cont_id == '#{@cont_id}'", @data_out, @view_out)
+      db.execute("UPDATE contests SET data ='#{@data_out}' view ='#{@view_out}' WHERE cont_id == '#{@cont_id}'")
     db.close
   end
 
   def calc
-    @contest.logic
+    @contest.next
   end
 
 end

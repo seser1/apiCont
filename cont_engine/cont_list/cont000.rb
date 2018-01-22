@@ -21,9 +21,8 @@ class Cont000 < ContestTemplate
     #Logic end
   end
 
-  def continue?
-    return false if @data[:count1]>=10
-    return true
+  def update_stat
+    @run_flag=false if @data[:count1]>=10
   end
 
 end
