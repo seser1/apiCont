@@ -12,8 +12,9 @@ class Contest
     db = SQLite3::Database.new $db_path
       db.results_as_hash = true
       db.execute("SELECT * FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
+        @cont_type=row['cont_type']
         @term=row['term']
-        @users=JSON.parse(row['users'], {:symbolize_names => true}) 
+        @users=JSON.parse(row['users'], {:symbolize_names => true})
       end
     db.close
 
@@ -21,7 +22,7 @@ class Contest
   end
 
   def init_cont()
-    return ContManager.get_instance(@cont_id,@users)
+    return ContManager.get_instance(@cont_type,@users)
   end
 
   def run
@@ -37,18 +38,18 @@ class Contest
       @data_out = @contest.get_struct
       @view_out = @contest.get_view
 
-      #db_thread starts immediately after backup
-      @db_thread=Thread.start {
-        puts "db_thread#{index} start"
-        update_db
-        puts "db_thread#{index} end"
-      }
-
-      #calc_thread starts immediately after backup
-      @calc_thread=Thread.start {
-        puts "calc_thread#{index} start"
+      #thread starts immediately after backup
+      @thread=Thread.start {
+        #In thread, execute calc firstly
+        #update_db will be executed immediately after finishing calc
+        puts "thread#{index} start"
+        puts "calc start"
         calc
-        puts "calc_thread#{index} end"
+        puts "calc end"
+        puts "update_db start"
+        update_db
+        puts "update_db end"
+        puts "thread#{index} end"
       }
 
       sleep(@term/1000)

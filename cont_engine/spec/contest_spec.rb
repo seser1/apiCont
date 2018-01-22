@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 RSpec.describe 'contest test' do
-  cont_id='000'
+  cont_id='cont_000'
 
   it 'initializes Contest by test data on DB' do
     contest = Contest.new(cont_id)
