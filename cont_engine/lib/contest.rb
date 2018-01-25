@@ -1,11 +1,12 @@
 require 'sqlite3'
-require 'cont_manager'
+require 'logger'
+require_relative './cont_manager.rb'
 
 #Related path of db file
 $db_path=File.expand_path(File.dirname(__FILE__) + './../../cont_web/db/development.sqlite3')
 
 class Contest
-  def initialize(cont_id)
+  def initialize(cont_id, logger=nil)
     @cont_id=cont_id
 
     #If there already exists dbfile, open the file (not overwritten)
@@ -19,10 +20,15 @@ class Contest
     db.close
 
     @contest=init_cont()
+
+    #Create logger instance (STDERR) if not exists
+    @logger = logger || Logger.new(STDERR)
+
+    @logger.debug 'Contest: Initialization finished'
   end
 
   def init_cont()
-    return ContManager.get_instance(@cont_type,@users)
+    return ContManager.get_instance(@cont_type,@users,@logger)
   end
 
   def run
@@ -42,14 +48,14 @@ class Contest
       @thread=Thread.start {
         #In thread, execute calc firstly
         #update_db will be executed immediately after finishing calc
-        puts "thread#{index} start"
-        puts "calc start"
+        @logger.info "thread#{index} start"
+        @logger.info  "calc start"
         calc
-        puts "calc end"
-        puts "update_db start"
+        @logger.info  "calc end"
+        @logger.info  "update_db start"
         update_db
-        puts "update_db end"
-        puts "thread#{index} end"
+        @logger.info  "update_db end"
+        @logger.info  "thread#{index} end"
       }
 
       sleep(@term/1000)

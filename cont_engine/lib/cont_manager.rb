@@ -13,8 +13,11 @@ module ContManager
 =end
 
   #Return target contest's instance initialized by user_info
-  def get_instance(cont_type, user_info)
-    return Module.const_get(cont_type).new(user_info)
+  def get_instance(cont_type, user_info, logger=nil)
+    logger = logger || Logger.new(STDERR)
+    logger.info 'ContManager :get_instance'
+
+    return Module.const_get(cont_type).new(user_info, logger)
   end
 
   module_function :get_instance

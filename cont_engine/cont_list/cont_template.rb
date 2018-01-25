@@ -1,11 +1,12 @@
 require 'json'
+require 'logger'
 
 class ContestTemplate
   attr_accessor :run_flag
 
   #Initializer may be overridden in inheriting class
   #But then, variable defined here should be defined in inheriting class
-  def initialize(users)
+  def initialize(users, logger=nil)
     #Hash which describes data format send to user
     @data_template={}
     #Hash which describes input json format from cont_web (also from user)
@@ -23,6 +24,9 @@ class ContestTemplate
 
     #flag which decide the contest's continuation
     @run_flag=true
+
+    #Create logger instance (STDERR) if not exists
+    @logger = logger || Logger.new(STDERR)
   end
   
   def logic
