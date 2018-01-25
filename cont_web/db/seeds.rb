@@ -19,4 +19,4 @@
 #text :view
 
 #seed for testing
-Contest.create(cont_id: 'cont_000', name: 'testContest', text: 'Test contest 01', cont_type: '000', term: 3000, users: '["user1","user2"]')
+Contest.create(cont_id: 'cont_000', name: 'testContest', text: 'Test contest 01', cont_type: 'Cont000', term: 3000, users: '["user1","user2"]')
