@@ -9,6 +9,10 @@ class Contest
   def initialize(cont_id, logger=nil)
     @cont_id=cont_id
 
+    #Create logger instance (STDERR) if not exists
+    @logger = logger || Logger.new(STDERR)
+    @logger.debug 'Contest: Start to initializing'
+
     #If there already exists dbfile, open the file (not overwritten)
     db = SQLite3::Database.new $db_path
       db.results_as_hash = true
@@ -18,11 +22,9 @@ class Contest
         @users=JSON.parse(row['users'], {:symbolize_names => true})
       end
     db.close
+    @logger.error 'There is no data in Database' if @cont_type == nil 
 
     @contest=init_cont()
-
-    #Create logger instance (STDERR) if not exists
-    @logger = logger || Logger.new(STDERR)
 
     @logger.debug 'Contest: Initialization finished'
   end
@@ -33,6 +35,8 @@ class Contest
 
   def run
     index=0
+
+    @logger.info 'Contest: contest starts'
 
     #At the first turn, no thread executed. So sleep once
     sleep(@term/1000)
@@ -48,29 +52,38 @@ class Contest
       @thread=Thread.start {
         #In thread, execute calc firstly
         #update_db will be executed immediately after finishing calc
-        @logger.info "thread#{index} start"
-        @logger.info  "calc start"
+        @logger.debug "Contest: thread#{index} start"
+        @logger.debug "Contest: get_input start"
+        get_input
+        @logger.debug "Contest: get_input end"
+        @logger.debug "Contest: calc start"
         calc
-        @logger.info  "calc end"
-        @logger.info  "update_db start"
+        @logger.debug "Contest: calc end"
+        @logger.debug "Contest: update_db start"
         update_db
-        @logger.info  "update_db end"
-        @logger.info  "thread#{index} end"
+        @logger.debug "Contest: update_db end"
+        @logger.debug "Contest: thread#{index} end"
       }
 
       sleep(@term/1000)
       index+=1
     end
+
+    @logger.info 'Contest: Contest ends'
+  end
+
+  def get_input
+    @input=nil
+  end
+
+  def calc
+    @contest.next(@input)
   end
 
   def update_db
     db = SQLite3::Database.new $db_path
       db.execute("UPDATE contests SET data ='#{@data_out}' view ='#{@view_out}' WHERE cont_id == '#{@cont_id}'")
     db.close
-  end
-
-  def calc
-    @contest.next
   end
 
 end

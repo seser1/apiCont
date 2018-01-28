@@ -12,6 +12,8 @@ class Cont000 < ContestTemplate
     @view=nil
     @input=nil
 
+    @run_flag=true
+
     #Create logger instance if not exists
     @logger = logger || Logger.new(STDERR)
     @logger.debug 'Cont000: Initialization finished'
@@ -29,7 +31,7 @@ class Cont000 < ContestTemplate
 
   def update_stat
     @logger.debug 'Cont000: execute update_stat'
-    @run_flag=false if @data[:count1]>=10
+    @run_flag=false if @data[:count1]>=5
   end
 
 end
