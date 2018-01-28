@@ -73,7 +73,12 @@ class Contest
   end
 
   def get_input
-    @input=nil
+    db = SQLite3::Database.new $db_path
+      db.results_as_hash = true
+      db.execute("SELECT * FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
+        @input=row['inputs']
+      end
+    db.close
   end
 
   def calc

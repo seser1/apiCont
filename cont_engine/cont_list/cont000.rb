@@ -20,13 +20,16 @@ class Cont000 < ContestTemplate
   end
 
   def logic
-    @logger.debug 'Cont000: execute logic'
+    @logger.debug 'Cont000: Execute logic'
 
     #Contest logic
     @data[:count1]+=1
     @input.each{|k, v|@data[:count2]+=v[:change]}
     @view="count1: #{@data[:count1]} count2: #{@data[:count2]}";
     #Logic end
+
+    @logger.debug "Cont000: @data : #{@data}"
+    @logger.debug 'Cont000: Logic ends'
   end
 
   def update_stat

@@ -24,6 +24,8 @@ class CreateContests < ActiveRecord::Migration[5.1]
       t.text :data
       #view displayed to user
       t.text :view
+      #Inputs from users
+      t.text :inputs
 
       t.timestamps
     end

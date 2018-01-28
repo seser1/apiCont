@@ -17,6 +17,8 @@
 #text :input_template
 #text :data
 #text :view
+#text :inputs
+
 
 #seed for testing
-Contest.create(cont_id: 'cont_000', name: 'testContest', text: 'Test contest 01', cont_type: 'Cont000', term: 3000, users: '["user1","user2"]')
+Contest.create(cont_id: 'cont_000', name: 'testContest', text: 'Test contest 01', cont_type: 'Cont000', term: 3000, users: '["user1","user2"]', inputs: '{"user1":{"change": 1}, "user2":{"change": 2}}')
