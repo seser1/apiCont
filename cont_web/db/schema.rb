@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20171209123254) do
     t.text "input_template"
     t.text "data"
     t.text "view"
+    t.text "inputs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

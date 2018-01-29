@@ -28,7 +28,6 @@ class Cont000 < ContestTemplate
     @view="count1: #{@data[:count1]} count2: #{@data[:count2]}";
     #Logic end
 
-    @logger.debug "Cont000: @data : #{@data}"
     @logger.debug 'Cont000: Logic ends'
   end
 

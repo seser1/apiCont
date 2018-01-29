@@ -1,11 +1,12 @@
 require 'sqlite3'
 require 'logger'
+require 'active_support/core_ext/integer/inflections'
 require_relative './cont_manager.rb'
 
 #Related path of db file
 $db_path=File.expand_path(File.dirname(__FILE__) + './../../cont_web/db/development.sqlite3')
 
-class Contest
+class Contest < Exception
   def initialize(cont_id, logger=nil)
     @cont_id=cont_id
 
@@ -43,10 +44,15 @@ class Contest
 
     #Main loop of contest
     while @contest.run_flag
+      @logger.info "Contest: ------ #{index.ordinalize} turn starts ------"
+
       #At the beggining of turn, backup current data
       #Because update_db must use latest turn's data
       @data_out = @contest.get_struct
       @view_out = @contest.get_view
+      @logger.info "Contest: @data : #{@data_out}"
+      @logger.info "Contest: @view : #{@view_out}"
+
 
       #thread starts immediately after backup
       @thread=Thread.start {
@@ -78,6 +84,7 @@ class Contest
       db.execute("SELECT * FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
         @input=row['inputs']
       end
+      @logger.error 'Contest: inputs are nil' if @input==nil
     db.close
   end
 
