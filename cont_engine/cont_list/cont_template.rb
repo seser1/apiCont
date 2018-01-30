@@ -2,7 +2,7 @@ require 'json'
 require 'logger'
 
 class ContestTemplate
-  attr_accessor :run_flag
+  attr_reader :run_flag
 
   #Initializer may be overridden in inheriting class
   #But then, variable defined here should be defined in inheriting class

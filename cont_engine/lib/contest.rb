@@ -13,21 +13,22 @@ class Contest < Exception
     #Create logger instance (STDERR) if not exists
     @logger = logger || Logger.new(STDERR)
     @logger.debug 'Contest: Start to initializing'
-
-    #If there already exists dbfile, open the file (not overwritten)
-    db = SQLite3::Database.new $db_path
+    SQLite3::Database.new $db_path do |db|
       db.results_as_hash = true
       db.execute("SELECT * FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
         @cont_type=row['cont_type']
         @term=row['term']
         @users=JSON.parse(row['users'], {:symbolize_names => true})
       end
-    db.close
+    end
+
     @logger.error 'There is no data in Database' if @cont_type == nil 
 
     @contest=init_cont()
 
     @logger.debug 'Contest: Initialization finished'
+  rescue => e
+    raise StandardError, "Exception occured while initializing Contest: #{e.message}"
   end
 
   def init_cont()
@@ -76,16 +77,18 @@ class Contest < Exception
     end
 
     @logger.info 'Contest: Contest ends'
+  rescue => e
+    raise StandardError, "Exception occured while running Contest: #{e.message}"
   end
 
   def get_input
-    db = SQLite3::Database.new $db_path
+    SQLite3::Database.new $db_path do |db|
       db.results_as_hash = true
       db.execute("SELECT * FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
         @input=row['inputs']
       end
       @logger.error 'Contest: inputs are nil' if @input==nil
-    db.close
+    end
   end
 
   def calc
@@ -93,9 +96,9 @@ class Contest < Exception
   end
 
   def update_db
-    db = SQLite3::Database.new $db_path
+    SQLite3::Database.new $db_path do |db|
       db.execute("UPDATE contests SET data ='#{@data_out}' view ='#{@view_out}' WHERE cont_id == '#{@cont_id}'")
-    db.close
+    end
   end
 
 end

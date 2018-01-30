@@ -13,5 +13,11 @@ logger.level = ARGV[1]=='-d' ?  Logger::DEBUG :  Logger::INFO
 logger.info "Start to execute engine: cont_id = #{cont_id}"
 
 #Executed from job controller
-contest = Contest.new(cont_id, logger)
-contest.run
+begin
+    contest = Contest.new(cont_id, logger)
+    contest.run
+rescue => e
+  s="Contest stopped: Detected Exception - #{e.message}"
+  puts s
+  logger.error s
+end
