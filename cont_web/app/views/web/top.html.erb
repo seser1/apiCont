@@ -1,4 +1,10 @@
 <div class="page_title">top</div>
 <div class="content">
-top
+top<br><br>
+
+contest list
+<% @contests.each do |contest| %>
+  <br>
+  <a href="/cont/<%= contest.cont_id %>"><%= contest.cont_id %></a>
+<% end %>
 </div>

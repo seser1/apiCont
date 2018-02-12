@@ -17,12 +17,13 @@ ActiveRecord::Schema.define(version: 20180212112944) do
     t.string "name"
     t.string "text"
     t.time "start_date"
-    t.text "users"
+    t.string "cont_type"
     t.integer "term"
+    t.text "users"
     t.text "input_template"
     t.text "data"
     t.text "view"
-    t.integer "int_param"
+    t.text "inputs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

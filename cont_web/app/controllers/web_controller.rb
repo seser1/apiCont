@@ -2,12 +2,13 @@ class WebController < ApplicationController
   layout 'web_main'
 
   def main
+    @contests = Contest.all
     render 'web/top'
   end
 
-  def list
+  def conf
     @contests = Contest.all
-    render 'web/list'
+    render 'web/conf'
   end
 
   def cont

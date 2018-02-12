@@ -50,4 +50,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #bundle delayed_job to use active job
-gem 'delayed_job_active_record'
+gem "delayed_job"
+gem "delayed_job_active_record"
+
+gem "daemons"
