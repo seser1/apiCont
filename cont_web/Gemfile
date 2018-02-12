@@ -49,6 +49,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-##bundle delayed_job to use active job
-#->Changed not to use Active Job to manage contest
-#gem 'delayed_job_active_record'
+#bundle delayed_job to use active job
+gem 'delayed_job_active_record'

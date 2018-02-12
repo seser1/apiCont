@@ -28,6 +28,7 @@ class Contest < Exception
 
     @logger.debug 'Contest: Initialization finished'
   rescue => e
+    #Return error with comment in order to detect error place
     raise StandardError, "Exception occured while initializing Contest: #{e.message}"
   end
 
@@ -60,15 +61,16 @@ class Contest < Exception
         #In thread, execute calc firstly
         #update_db will be executed immediately after finishing calc
         @logger.debug "Contest: thread#{index} start"
+
         @logger.debug "Contest: get_input start"
         get_input
-        @logger.debug "Contest: get_input end"
+
         @logger.debug "Contest: calc start"
         calc
-        @logger.debug "Contest: calc end"
+
         @logger.debug "Contest: update_db start"
         update_db
-        @logger.debug "Contest: update_db end"
+
         @logger.debug "Contest: thread#{index} end"
       }
 
