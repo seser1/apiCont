@@ -1,3 +1,5 @@
+require_relative '../jobs/contexec_job.rb'
+
 class WebController < ApplicationController
   layout 'web_main'
 
@@ -7,7 +9,9 @@ class WebController < ApplicationController
   end
 
   def conf
-    @contests = Contest.all
+    #Write here the registering process of contest as a job
+    ContexecJob.delay(run_at: 1.minutes.from_now).exec('cont_000')
+
     render 'web/conf'
   end
 

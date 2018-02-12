@@ -1,6 +1,6 @@
 require 'date'
 require 'logger'
-require './lib/contest.rb'
+require_relative './lib/contest.rb'
 
 
 #cont_id are given by using arguments when execute
