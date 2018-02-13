@@ -13,6 +13,7 @@
 #time :start_date
 #string :cont_type
 #integer :term
+#integer :stat
 #text :users
 #text :input_template
 #text :data

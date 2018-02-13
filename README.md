@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Developing Ruby version: 2.4
 
-Things you may want to cover:
+# cont_web
+Job engine must be executed
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# cont_engine
+Executing command of engine.rb when testing: ruby engine.rb cont_000 -d

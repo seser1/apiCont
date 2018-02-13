@@ -10,7 +10,9 @@ class WebController < ApplicationController
 
   def conf
     #Write here the registering process of contest as a job
-    ContexecJob.delay(run_at: 1.minutes.from_now).exec('cont_000')
+
+#   ContexecJob.delay(run_at: 1.minutes.from_now).exec('cont_000')
+    ContexecJob.delay(run_at: Time.now+40).exec('cont_000')
 
     render 'web/conf'
   end

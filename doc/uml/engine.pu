@@ -1,0 +1,27 @@
+@startuml engine
+actor engine
+
+engine -> Contest: run
+
+database db_contests
+
+Contest -> ContManager: Get Contest_Instance
+Contest <-- ContManager: Return Contest_Instance
+
+loop
+  Contest -> db_contests: get_input (from user)
+  Contest <-- db_contests
+
+  Contest -> Contest_Instance: Next turn
+    Contest_Instance -> Contest_Instance :logic
+    Contest_Instance -> Contest_Instance :update_view
+    Contest_Instance -> Contest_Instance :update_stat
+  Contest <-- Contest_Instance:
+
+  Contest -> db_contests: update_db (put data, view)
+  Contest <-- db_contests
+end
+
+engine <-- Contest: Contest finished
+
+@enduml

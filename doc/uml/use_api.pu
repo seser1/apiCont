@@ -1,0 +1,25 @@
+@startuml engine
+actor user
+participant ApiIO
+database db
+
+user -> Certificate: Certificate
+user <-- Certificate
+
+loop
+  user -> ApiIO: Get information
+    ApiIO -> db: Get contest's data
+    ApiIO <- db
+  user <-- ApiIO: Response(json)
+
+  user -> user: Calculate
+
+  user -> ApiIO: Put input(json)
+    ApiIO -> db: Write input from user
+    ApiIO <- db
+  user <-- ApiIO
+
+end
+
+
+@enduml

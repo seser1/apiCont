@@ -14,6 +14,8 @@ class CreateContests < ActiveRecord::Migration[5.1]
       t.string :cont_type
       #Contest update term (ms)
       t.integer :term
+      #Status of contest (0:scheduled 1:in session 2:finished -1:ended unexpectedly)
+      t.integer :stat
 
       #Users particiapte the contest (json format)
       t.text :users
