@@ -1,0 +1,24 @@
+@startuml screens
+state Screens{
+  [*] --> top: web#top
+  [*] --> conf: web#conf
+  [*] --> userlist: web#user
+  [*] --> user_new
+  [*] --> mypage
+
+  state Contests{
+    cont_XXX: Get contest's information (including API's URL)
+  }
+
+  top --> cont_XXX
+
+  userlist: User list
+
+  user_new: Only activated not logged in
+
+  mypage --> mypage: Configure
+  mypage --> cont_XXX: Participating
+  mypage: Only activated logged in
+}
+
+@enduml
