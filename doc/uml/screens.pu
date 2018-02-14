@@ -1,8 +1,8 @@
 @startuml screens
 state Screens{
-  [*] --> top: web#top
-  [*] --> conf: web#conf
-  [*] --> userlist: web#user
+  [*] --> top
+  [*] --> configure
+  [*] --> userlist
   [*] --> user_new
   [*] --> mypage
 
@@ -11,6 +11,8 @@ state Screens{
   }
 
   top --> cont_XXX
+
+  configure: For admin\nConfigure contest
 
   userlist: User list
 

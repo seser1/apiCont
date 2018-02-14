@@ -1,0 +1,47 @@
+@startuml table
+
+
+package db as ext <<Database>> {
+
+  entity contests {
+    + id
+    --
+    cont_id [PK]
+    name
+    text
+    start_date
+    cont_type
+    term
+    users
+    input_template
+    data
+    view
+    inputs
+
+    secure_token
+  }
+
+
+  entity UC_relate {
+    + id
+    --
+    user_id
+    cont_id
+
+    login_token
+  }
+
+  entity user {
+    + id
+    --
+    user_id [PK]
+    password(hash)
+  }
+}
+
+
+user |o--o{ UC_relate
+UC_relate }o-ri-o| contests
+
+
+@enduml
