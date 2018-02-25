@@ -1,7 +1,7 @@
 @startuml table
 
 
-package db as ext <<Database>> {
+package main_db as ext <<Database>> {
 
   entity contests {
     + id
@@ -10,23 +10,21 @@ package db as ext <<Database>> {
     name
     text
     start_date
-    cont_type
+    cont_type [FK]
     term
     users
     input_template
     data
     view
     inputs
-
-    secure_token
   }
 
 
   entity UC_relate {
     + id
     --
-    user_id
-    cont_id
+    user_id [FK]
+    cont_id [FK]
 
     login_token
   }
@@ -35,13 +33,19 @@ package db as ext <<Database>> {
     + id
     --
     user_id [PK]
-    password(hash)
+    password (hashed)
+  }
+
+  entity cont_types {
+  + id
+  --
+  cont_type [PK]
   }
 }
 
 
 user |o--o{ UC_relate
 UC_relate }o-ri-o| contests
-
+cont_types |o--o{ contests
 
 @enduml

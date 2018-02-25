@@ -99,7 +99,10 @@ class Contest < Exception
 
   def update_db
     SQLite3::Database.new $db_path do |db|
-      db.execute("UPDATE contests SET data ='#{@data_out}' view ='#{@view_out}' WHERE cont_id == '#{@cont_id}'")
+#      db.execute("UPDATE contests SET data ='#{@data_out}' view ='#{@view_out}' WHERE cont_id == '#{@cont_id}'")
+      db.transaction do
+        db.execute("UPDATE contests SET data ='#{@data_out}' view ='#{@view_out}' WHERE cont_id == '#{@cont_id}'")
+      end
     end
   end
 
