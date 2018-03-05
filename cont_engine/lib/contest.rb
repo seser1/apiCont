@@ -98,12 +98,22 @@ class Contest < Exception
   end
 
   def update_db
+#    SQLite3::Database.new './test.log' do |db|
+
     SQLite3::Database.new $db_path do |db|
 #      db.execute("UPDATE contests SET data ='#{@data_out}' view ='#{@view_out}' WHERE cont_id == '#{@cont_id}'")
       db.transaction do
         db.execute("UPDATE contests SET data ='#{@data_out}' view ='#{@view_out}' WHERE cont_id == '#{@cont_id}'")
       end
     end
+
+    #Cant write to db (cannot finish writing)
+    #This issue may not be caused by access aurhority because it behaves as the same when using './test.log'
+    
+  rescue => e
+    #Write error to logger here. Because thread is independence and may not rescue in 'run'
+    @logger.error 'Contest: inputs are nil' if @input==nil
+    raise StandardError, "Exception occured while updating db: #{e.message}"
   end
 
 end
