@@ -15,7 +15,7 @@ class Contest < Exception
     @logger.debug 'Contest: Start to initializing'
     SQLite3::Database.new $db_path do |db|
       db.results_as_hash = true
-      db.execute("SELECT * FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
+      db.execute("SELECT * FROM contests WHERE cont_id = '#{@cont_id}'") do |row|
         @cont_type=row['cont_type']
         @term=row['term']
         @users=JSON.parse(row['users'], {:symbolize_names => true})
@@ -50,11 +50,12 @@ class Contest < Exception
 
       #At the beggining of turn, backup current data
       #Because update_db must use latest turn's data
-      @data_out = @contest.get_struct
-      @view_out = @contest.get_view
+
+      @data_out = @contest.get_struct.to_s
+      @view_out = @contest.get_view.to_s
+      
       @logger.info "Contest: @data : #{@data_out}"
       @logger.info "Contest: @view : #{@view_out}"
-
 
       #thread starts immediately after backup
       @thread=Thread.start {
@@ -79,14 +80,14 @@ class Contest < Exception
     end
 
     @logger.info 'Contest: Contest ends'
-  rescue => e
+    rescue => e
     raise StandardError, "Exception occured while running Contest: #{e.message}"
   end
 
   def get_input
     SQLite3::Database.new $db_path do |db|
       db.results_as_hash = true
-      db.execute("SELECT * FROM contests WHERE cont_id == '#{@cont_id}'") do |row|
+      db.execute("SELECT * FROM contests WHERE cont_id = '#{@cont_id}'") do |row|
         @input=row['inputs']
       end
       @logger.error 'Contest: inputs are nil' if @input==nil
@@ -98,22 +99,18 @@ class Contest < Exception
   end
 
   def update_db
-#    SQLite3::Database.new './test.log' do |db|
 
     SQLite3::Database.new $db_path do |db|
-#      db.execute("UPDATE contests SET data ='#{@data_out}' view ='#{@view_out}' WHERE cont_id == '#{@cont_id}'")
       db.transaction do
-        db.execute("UPDATE contests SET data ='#{@data_out}' view ='#{@view_out}' WHERE cont_id == '#{@cont_id}'")
+        db.execute("UPDATE contests SET data=?, view=? WHERE cont_id=?", [@data_out, @view_out, @cont_id])
       end
     end
 
-    #Cant write to db (cannot finish writing)
-    #This issue may not be caused by access aurhority because it behaves as the same when using './test.log'
-    
   rescue => e
-    #Write error to logger here. Because thread is independence and may not rescue in 'run'
+    #Write error to logger here. 
+    #Because 'raise' here won't be rescued at 'run' because the thread is independent
     @logger.error 'Contest: inputs are nil' if @input==nil
-    raise StandardError, "Exception occured while updating db: #{e.message}"
+    @logger.error "update_db: #{e.message}"
   end
 
 end

@@ -7,9 +7,11 @@ class Cont000 < ContestTemplate
     @data_template={:count1 => 0, :count2 => 0}
     @input_template={:change => nil}
 
-    @data=@data_template.dup
+#    @data=@data_template.dup
+    @data = Marshal.load(Marshal.dump(@data_template))
+    @view="count1: #{@data[:count1]} count2: #{@data[:count2]}";
+
     @user_info=user_info
-    @view=nil
     @input=nil
 
     @run_flag=true
