@@ -9,7 +9,8 @@ class Cont000 < ContestTemplate
 
 #    @data=@data_template.dup
     @data = Marshal.load(Marshal.dump(@data_template))
-    @view="count1: #{@data[:count1]} count2: #{@data[:count2]}";
+#    @view="count1: #{@data[:count1]} count2: #{@data[:count2]}"
+    @view=nil # Even if create view here, view wont be displayed because db is updated end of turn
 
     @user_info=user_info
     @input=nil

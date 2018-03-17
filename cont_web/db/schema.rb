@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180212112944) do
     t.time "start_date"
     t.string "cont_type"
     t.integer "term"
+    t.integer "stat"
     t.text "users"
     t.text "input_template"
     t.text "data"
