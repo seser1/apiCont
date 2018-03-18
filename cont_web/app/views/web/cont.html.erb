@@ -1,7 +1,13 @@
 <div class="page_title">cont</div>
 <div class="content">
-name: <%= @contest.name %>
+
+<h2 class="name"><%= @contest.name %></h2>
+
 <%= @contest.start_date %><br>
 <%= @contest.text %><br><br>
-<%= @contest.view %><br>
+
+<div class="view">
+  <%= @contest.view %><br>
+</div>
+
 </div>
