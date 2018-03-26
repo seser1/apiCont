@@ -16,7 +16,7 @@ Rails project which will provide web-based service listed below.
 
 
 ### Screens overview
-<img src="./doc/uml/screens.png" width=40% height=40%>
+<img src="./doc/uml/screens.png" width=50% height=50%>
 
 ### note
 Job engine should be executed manualy when operation.
@@ -29,7 +29,7 @@ Operates independently from cont_web and executed by scheduled job when contest 
 It Exchanges data with cont_web by using sqlite3 database.
 
 ### Operation overwiew
-<img src="./doc/uml/engine.png" width=30% height=30%>
+<img src="./doc/uml/engine.png" width=50% height=50%>
 
 ### Note
 In deployment environment, cont_engine will be executed by job controller.
@@ -40,7 +40,7 @@ Execute cont_web as rails project. Do not change directory structure (cont_web i
 At the same time, job engine won't be executed automatically and should execute by manual.
 
 ## ToDo
-*cont_web
+* cont_web
   - Create API interface
   - Create Realtime contest view
   - Create API authentification function
