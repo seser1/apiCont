@@ -18,7 +18,7 @@ Rails project which will provide web-based service listed below.
 ### Screens overview
 <img src="./doc/uml/screens.png" width=50% height=50%>
 
-### note
+### Note
 Job engine should be executed manualy when operation.
 
 
@@ -43,5 +43,6 @@ At the same time, job engine won't be executed automatically and should execute 
 * cont_web
   - Create API interface
   - Create Realtime contest view
-  - Create API authentification function
-  - 
+  - Create API authentification function (uses token created for each user)
+  - In engine-contest, db access is not sophisticated so should think how manage it (e.g. create DAO?)
+  - Confirm that job execution is not delayed (If it delays, must create buffer function)
