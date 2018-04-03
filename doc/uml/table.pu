@@ -12,20 +12,19 @@ package main_db as ext <<Database>> {
     start_date
     cont_type [FK]
     term
-    users
     input_template
     data
     view
-    inputs
   }
 
 
   entity UC_relate {
     + id
     --
-    user_id [FK]
-    cont_id [FK]
+    user_id [PK][FK]
+    cont_id [PK][FK]
 
+    input
     login_token
   }
 
@@ -39,10 +38,10 @@ package main_db as ext <<Database>> {
   entity cont_types {
   + id
   --
-  cont_type [PK]
+    cont_type [PK]
   }
-}
 
+}
 
 user |o--o{ UC_relate
 UC_relate }o-ri-o| contests

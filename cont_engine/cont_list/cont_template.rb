@@ -45,7 +45,8 @@ class ContestTemplate
 
   def next(input)
     #input is json format data
-    @input=JSON.parse(input, {:symbolize_names => true})
+    #@input=JSON.parse(input, {:symbolize_names => true})
+    @input=input
 
     @logger.debug 'Cont_temp: Start logic'
     #Contest's main logic

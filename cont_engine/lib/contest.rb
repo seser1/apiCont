@@ -9,6 +9,7 @@ $db_path=File.expand_path(File.dirname(__FILE__) + './../../cont_web/db/developm
 class Contest < Exception
   def initialize(cont_id, logger=nil)
     @cont_id=cont_id
+    @users=[]
 
     #Create logger instance (STDERR) if not exists
     @logger = logger || Logger.new(STDERR)
@@ -18,8 +19,11 @@ class Contest < Exception
       db.execute("SELECT * FROM contests WHERE cont_id = '#{@cont_id}'") do |row|
         @cont_type=row['cont_type']
         @term=row['term']
-        @users=JSON.parse(row['users'], {:symbolize_names => true})
       end
+      db.execute("SELECT * FROM uc_relates WHERE cont_id = '#{@cont_id}'") do |row|
+        @users.push(row['user_id'])
+      end
+
     end
 
     @logger.error 'There is no data in Database' if @cont_type == nil 
@@ -85,10 +89,11 @@ class Contest < Exception
   end
 
   def get_input
+    @input={}
     SQLite3::Database.new $db_path do |db|
       db.results_as_hash = true
-      db.execute("SELECT * FROM contests WHERE cont_id = '#{@cont_id}'") do |row|
-        @input=row['inputs']
+      db.execute("SELECT * FROM uc_relates WHERE cont_id = '#{@cont_id}'") do |row|
+        @input[row['user_id']]=JSON.parse(row['input'], {:symbolize_names => true})
       end
       @logger.error 'Contest: inputs are nil' if @input==nil
     end

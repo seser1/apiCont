@@ -1,0 +1,2 @@
+class UcRelate < ApplicationRecord
+end

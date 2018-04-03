@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212112944) do
+ActiveRecord::Schema.define(version: 20180403123932) do
 
   create_table "contests", force: :cascade do |t|
     t.string "cont_id"
@@ -20,11 +20,9 @@ ActiveRecord::Schema.define(version: 20180212112944) do
     t.string "cont_type"
     t.integer "term"
     t.integer "stat"
-    t.text "users"
     t.text "input_template"
     t.text "data"
     t.text "view"
-    t.text "inputs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,6 +40,15 @@ ActiveRecord::Schema.define(version: 20180212112944) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "uc_relates", force: :cascade do |t|
+    t.string "user_id"
+    t.string "cont_id"
+    t.text "input"
+    t.string "login_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

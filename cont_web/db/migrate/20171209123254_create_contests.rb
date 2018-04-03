@@ -18,7 +18,7 @@ class CreateContests < ActiveRecord::Migration[5.1]
       t.integer :stat
 
       #Users particiapte the contest (json format)
-      t.text :users
+      #t.text :users
 
       #template of input structure
       t.text :input_template
@@ -27,7 +27,7 @@ class CreateContests < ActiveRecord::Migration[5.1]
       #view displayed to user
       t.text :view
       #Inputs from users
-      t.text :inputs
+      #t.text :inputs
 
       t.timestamps
     end
