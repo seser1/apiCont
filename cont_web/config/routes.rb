@@ -16,8 +16,9 @@ Rails.application.routes.draw do
 
   #-----API---------
   #Return contest's status(json formatted) which contestID is :id.
-  get 'api/stat/:id', to: 'api#stat'
+  get 'api/stat/:cont_id', to: 'api#stat'
 
-
+  #Update contest's status which contestID is :id.
+  get 'api/update/:cont_id', to: 'api#update'
 
 end

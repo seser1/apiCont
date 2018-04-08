@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(version: 20180403123932) do
     t.string "cont_type"
     t.integer "term"
     t.integer "stat"
+    t.text "users"
     t.text "input_template"
     t.text "data"
     t.text "view"
+    t.text "inputs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
